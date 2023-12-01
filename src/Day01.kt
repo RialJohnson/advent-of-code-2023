@@ -1,63 +1,88 @@
+const val ONE = "one"
+const val TWO = "two"
+const val THREE = "three"
+const val FOUR = "four"
+const val FIVE = "five"
+const val SIX = "six"
+const val SEVEN = "seven"
+const val EIGHT = "eight"
+const val NINE = "nine"
+
 fun main() {
 
-    fun part1(input: List<String>): Int {
-        var count = 0
-        var prev = Int.MAX_VALUE
+    fun String.textNumToDigitConversion(): Int {
+        return when (this) {
+            ONE -> 1
+            TWO -> 2
+            THREE -> 3
+            FOUR -> 4
+            FIVE -> 5
+            SIX -> 6
+            SEVEN -> 7
+            EIGHT -> 8
+            NINE -> 9
+            else -> -1
+        }
+    }
 
-        input.forEach {
-            if (it.toInt() > prev) count++
-            prev = it.toInt()
+    fun part1(input: List<String>): Int {
+        var calibrationValuesSum = 0
+
+        // go through each line of input
+        input.forEach { amendedCalibrationValues ->
+            // extract only the digits into their own string
+            var digitsOnly = ""
+            amendedCalibrationValues.forEach { char ->
+                if (char.isDigit()) digitsOnly += char
+            }
+            // combine the first and last digits into their own string
+            val calibrationValue = digitsOnly.first().toString() + digitsOnly.last().toString()
+            calibrationValuesSum += calibrationValue.toInt() // sum them
         }
 
-        return count
+        return calibrationValuesSum
     }
 
     fun part2(input: List<String>): Int {
-        var count = 0
-        var prevList = listOf<Int>()
-        val curList = mutableListOf<Int>()
+        var calibrationValuesSum = 0
 
-        input.forEach {
+        val matchList = listOf(ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE)
 
-            // don't remove unless list of 3 is full
-            if (curList.size == 3) curList.removeAt(0)
-            curList.add(it.toInt())
+        input.forEach { amendedCalibrationValues ->
 
-            if (curList.size == 3 && prevList.size == 3) {
-                if (sumVals(curList.toList()) > sumVals(prevList.toList())) count++
+            // find and map the locations of all the text numbers on this line
+            val startingIndexMap = mutableMapOf<Int, Int>()
+            matchList.forEach { matchingNum ->
+                val list = Regex(matchingNum).findAll(amendedCalibrationValues).map { it.range.start }.toList()
+                list.forEach {
+                    startingIndexMap[it] = matchingNum.textNumToDigitConversion() // maps the starting index and the string value of the match
+                }
             }
 
-            prevList = curList.toList()
-        }
-        return count
-    }
-
-    // alternate part 2 solution that uses fancy kotlin windowed() function
-    fun part2Windowed(input: List<String>): Int {
-        var count = 0
-        var prevList = listOf<String>()
-
-        // creates a list of lists of group of 3
-        val groupsOf3 = input.windowed(3, 1)
-
-        groupsOf3.forEach {
-            if (prevList.isNotEmpty()) {
-                if (sumValsString(it) > sumValsString(prevList)) count++
+            // find and map the locations of all the digits on this line
+            amendedCalibrationValues.forEachIndexed { index, char ->
+                if (char.isDigit()) startingIndexMap[index] = char.toString().toInt()
             }
-            prevList = it // rest previous list
+
+            // find the first and last map entries and combine them for calibration value
+            val sortedMap = startingIndexMap.toSortedMap()
+            println(sortedMap)
+            val calibrationValue = "${sortedMap[sortedMap.firstKey()]}${sortedMap[sortedMap.lastKey()]}"
+            println(calibrationValue)
+            calibrationValuesSum += calibrationValue.toInt() // sum them
+
         }
-        return count
+        return calibrationValuesSum
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 7)
-    check(part2(testInput) == 5)
-    check(part2Windowed(testInput) == 5)
+    val testInput1 = readInput("Day01_test1")
+    val testInput2 = readInput("Day01_test2")
+    check(part1(testInput1) == 142)
+    check(part2(testInput2) == 281)
 
     // print solutions
     val input = readInput("Day01")
     println(part1(input))
     println(part2(input))
-    println(part2Windowed(input))
 }
