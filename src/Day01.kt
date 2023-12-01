@@ -66,9 +66,7 @@ fun main() {
 
             // find the first and last map entries and combine them for calibration value
             val sortedMap = startingIndexMap.toSortedMap()
-            println(sortedMap)
             val calibrationValue = "${sortedMap[sortedMap.firstKey()]}${sortedMap[sortedMap.lastKey()]}"
-            println(calibrationValue)
             calibrationValuesSum += calibrationValue.toInt() // sum them
 
         }
