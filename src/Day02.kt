@@ -9,7 +9,7 @@ const val BLUE_MAX = 14
 fun main() {
 
     fun part1(input: List<String>): Int {
-        var possibleGameIdsSum = 0
+        var partNumbersSum = 0
 
         // go through each line of input
         input.forEachIndexed { gameIndex, game ->
@@ -26,11 +26,11 @@ fun main() {
                 }
             }
             if ((cubeMap[RED] ?: 0) <= RED_MAX && (cubeMap[BLUE] ?: 0) <= BLUE_MAX && (cubeMap[GREEN] ?: 0) <= GREEN_MAX) {
-                possibleGameIdsSum += gameIndex + 1 // if the game is possible for every color, add the game id to the sum
+                partNumbersSum += gameIndex + 1 // if the game is possible for every color, add the game id to the sum
             }
         }
 
-        return possibleGameIdsSum
+        return partNumbersSum
     }
 
     fun part2(input: List<String>): Int {
@@ -59,8 +59,8 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput1 = readInput("Day02_test1")
-    val testInput2 = readInput("Day02_test2")
+    val testInput1 = readInput("Day02_test")
+    val testInput2 = readInput("Day02_test")
     check(part1(testInput1) == 8)
     check(part2(testInput2) == 2286)
 
