@@ -75,3 +75,15 @@ fun String.md5(): String = BigInteger(1, MessageDigest.getInstance("MD5").digest
 fun String.splitToLongList(): List<Long> {
     return this.trim().split("\\s+".toRegex()).map { it.toLong() }
 }
+
+fun String.splitToIntList(): List<Int> {
+    return this.trim().split("\\s+".toRegex()).map { it.toInt() }
+}
+
+fun List<Int>.mergeToOneString(): String {
+    var oneString = ""
+    this.forEach {
+        oneString += it.toString()
+    }
+    return oneString
+}
