@@ -87,3 +87,7 @@ fun List<Int>.mergeToOneString(): String {
     }
     return oneString
 }
+
+fun Char.charToInt(): Int {
+    return this.toString().toInt()
+}
