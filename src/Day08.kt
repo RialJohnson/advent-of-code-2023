@@ -7,23 +7,6 @@ fun main() {
 
     data class Node(val label: String, val left: String, val right: String)
 
-    // calculates the greatest common denominator of two numbers
-    fun gcd(a: Long, b: Long): Long {
-        return if (b == 0L) a else gcd(b, a % b)
-    }
-
-    // calculates the least common multiple of two numbers
-    fun lcm(a: Long, b: Long): Long {
-        return if (a == 0L || b == 0L) 0L else (a * b) / gcd(a, b)
-    }
-
-    // calculates the least common multiple of a list of ints
-    fun List<Int>.calculateLCM(): Long {
-        return this.fold(1) { acc, num ->
-            lcm(acc, num.toLong())
-        }
-    }
-
     fun part1(input: List<String>): Int {
         var stepCount = 0
         val nodeMap = mutableMapOf<String, Node>()
