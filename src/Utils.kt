@@ -108,3 +108,16 @@ fun List<Int>.calculateLCM(): Long {
         lcm(acc, num.toLong())
     }
 }
+
+fun List<String>.inputToIntList(): List<Int> {
+    val intList = mutableListOf<Int>()
+    this.forEach {
+        intList.add(it.toInt())
+    }
+    return intList
+}
+
+// get 2d array of chars from List<String>
+fun List<String>.to2dCharArray(): List<List<Char>> = this.map { it.toList() }
+
+
