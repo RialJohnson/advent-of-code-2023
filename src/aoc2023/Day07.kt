@@ -1,3 +1,8 @@
+package aoc2023
+
+import charToInt
+import readInput
+
 const val YAHTZEE = 0
 const val QUADS = 1
 const val FULL_HOUSE = 2

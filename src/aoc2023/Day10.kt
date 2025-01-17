@@ -1,3 +1,8 @@
+package aoc2023
+
+import readInput
+import to2dCharArray
+
 enum class PipeType {
     NORTH_SOUTH,
     EAST_WEST,

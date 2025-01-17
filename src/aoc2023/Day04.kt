@@ -1,3 +1,6 @@
+package aoc2023
+
+import readInput
 import java.math.BigInteger
 
 fun main() {

@@ -1,3 +1,8 @@
+package aoc2023
+
+import readInput
+import splitToIntList
+
 fun main() {
 
     fun part1(input: List<String>): Int {

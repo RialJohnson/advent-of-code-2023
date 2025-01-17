@@ -1,3 +1,8 @@
+package aoc2023
+
+import calculateLCM
+import readInput
+
 const val START_NODE = "AAA"
 const val END_NODE = "ZZZ"
 const val LEFT = 'L'

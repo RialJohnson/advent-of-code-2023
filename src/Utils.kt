@@ -120,4 +120,10 @@ fun List<String>.inputToIntList(): List<Int> {
 // get 2d array of chars from List<String>
 fun List<String>.to2dCharArray(): List<List<Char>> = this.map { it.toList() }
 
+fun List<List<Any>>.print2DArray() {
+    this.forEach { row ->
+        println(row)
+    }
+}
+
 

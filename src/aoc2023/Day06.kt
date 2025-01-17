@@ -1,3 +1,8 @@
+package aoc2023
+
+import mergeToOneString
+import readInput
+import splitToIntList
 
 fun main() {
 

@@ -1,3 +1,8 @@
+package aoc2023
+
+import readInput
+import splitToLongList
+
 const val SOURCE_RANGE_START = 1
 const val DESTINATION_RANGE_START = 0
 const val RANGE = 2

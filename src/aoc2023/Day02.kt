@@ -1,3 +1,7 @@
+package aoc2023
+
+import readInput
+
 const val RED = "red"
 const val GREEN = "green"
 const val BLUE = "blue"
@@ -25,7 +29,7 @@ fun main() {
                     if (amount.toInt() > (cubeMap[color] ?: 0)) cubeMap[color] = amount.toInt()
                 }
             }
-            if ((cubeMap[RED] ?: 0) <= RED_MAX && (cubeMap[BLUE] ?: 0) <= BLUE_MAX && (cubeMap[GREEN] ?: 0) <= GREEN_MAX) {
+            if ((cubeMap[aoc2023.RED] ?: 0) <= aoc2023.RED_MAX && (cubeMap[aoc2023.BLUE] ?: 0) <= aoc2023.BLUE_MAX && (cubeMap[aoc2023.GREEN] ?: 0) <= aoc2023.GREEN_MAX) {
                 partNumbersSum += gameIndex + 1 // if the game is possible for every color, add the game id to the sum
             }
         }
@@ -51,7 +55,7 @@ fun main() {
                 }
             }
 
-            val power = (cubeMap[RED] ?: 0) * (cubeMap[BLUE] ?: 0) * (cubeMap[GREEN] ?: 0)
+            val power = (cubeMap[aoc2023.RED] ?: 0) * (cubeMap[aoc2023.BLUE] ?: 0) * (cubeMap[aoc2023.GREEN] ?: 0)
             cubePowerSums += power
         }
 
